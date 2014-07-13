@@ -30,7 +30,7 @@ $ npm install
 
 The purpose of this is to have a service available to all child processes so that they can read/write data.  Here's a simple example where we write back to the Node.JS process:
 
-``` node
+```JavaScript
 var spawn = require('child_process').spawn,
     shellVariables = require('shell-variables'),
     server,
@@ -59,7 +59,7 @@ server.start(function () {
 
 All variables read via the server, client, or cmd-line interface can be accessed at varying levels of depth via dot-notation.  An example of this is here:
 
-``` node
+```JavaScript
 var obj = {
         foo: {
             bar: {
