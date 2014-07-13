@@ -1,0 +1,37 @@
+{
+  "name": "shell-variables",
+  "version": "1.0.0",
+  "description": "Command-line service to read/write variables between shell processes",
+  "main": "index.js",
+  "scripts": {
+    "test": "ytestrunner --coverage"
+  },
+  "bin": {
+    "shell_variables.js": "./bin/shell_variables.js",
+    "shell-variables.js": "./bin/shell_variables.js"
+  },
+  "keywords": [
+    "variable",
+    "web",
+    "service",
+    "config",
+    "cmd",
+    "command-line",
+    "child_process",
+    "shell"
+  ],
+  "author": "St. John Johnson <st.john.johnson@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "get-stdin": "^0.1.0",
+    "nomnom": "^1.8.0",
+    "request": "^2.37.0"
+  },
+  "devDependencies": {
+    "mockery": "^1.4.0",
+    "nock": "^0.42.1",
+    "sinon": "^1.10.3",
+    "ytestrunner": "^0.3.3",
+    "yuitest": "^0.7.9"
+  }
+}
