@@ -4,7 +4,7 @@
   "description": "Command-line service to read/write variables between shell processes",
   "main": "index.js",
   "scripts": {
-    "test": "ytestrunner --coverage"
+    "test": "ytestrunner --coverage --save-results=true --save-coverage=true --results-format=junitxml --results-file=shippable/testresults/result.xml --coverage-file=shippable/codecoverage/cobertura --coverage-report-format=cobertura"
   },
   "bin": {
     "shell_variables.js": "./bin/shell_variables.js",
