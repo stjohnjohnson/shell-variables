@@ -8,7 +8,7 @@ var Y = require('yuitest'),
 
 Y.TestRunner.add(new Y.TestCase({
 
-    name : 'cmdLine Test',
+    name : 'Command-Line Test',
 
     setUp: function () {
         mockery.enable({
