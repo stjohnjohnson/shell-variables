@@ -33,7 +33,7 @@ Y.TestRunner.add(new Y.TestCase({
         instance.get('foo', function (error, value) {
             test.resume(function () {
                 Assert.isNull(error);
-                Assert.areEqual('barBROKEN', value);
+                Assert.areEqual('bar', value);
             });
         });
         test.wait(100);
