@@ -1,5 +1,5 @@
 # Shell Variable Tunnel
-[![Build Status](https://api.shippable.com/projects/53c2c9dc9852f53a0298c139/badge/master)](https://www.shippable.com/projects/53c2c9dc9852f53a0298c139)
+[![wercker status](https://app.wercker.com/status/e83ceea5fa3f0317c0f05b637590b9ef/m "wercker status")](https://app.wercker.com/project/bykey/e83ceea5fa3f0317c0f05b637590b9ef)
 
 Don't you just hate running multiple shell commands but not being able to properly read any data back other than exit codes and standard out?  No?  Really?  I guess it's a problem most people don't have, but I ended up having.  So I wrote this simple client/server system to be able to read/write variables from Node.JS to/from shell commands.
 
