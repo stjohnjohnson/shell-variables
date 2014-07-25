@@ -12,7 +12,10 @@ var parser = require('nomnom'),
  * @param  {String}     output Text to output
  */
 function exitCallback(code, output) {
-    util.print(output);
+    if (output) {
+        util.print(output);
+    }
+    console.log();
     process.exit(code);
 }
 
