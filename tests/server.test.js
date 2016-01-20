@@ -50,6 +50,37 @@ Y.TestRunner.add(new Y.TestCase({
         Assert.isUndefined(instance.set(''));
     },
 
+    'Can set large values in a server': function () {
+        var test = this,
+            instance = new Server({
+                foo: 'bar'
+            }),
+            largepayload = [];
+
+        for (var i = 0; i < 100000; i++) {
+            largepayload.push(i);
+        }
+
+        instance.start(function (url) {
+            test.resume(function () {
+                request.post({
+                    url: url + 'foo',
+                    json: {
+                        key: 'foo',
+                        value: largepayload
+                    }
+                }, function (error, req, body) {
+                    test.resume(function () {
+                        Assert.isNull(error);
+                        Assert.areEqual(200, req.statusCode);
+                    });
+                });
+                test.wait(100);
+            });
+        });
+        test.wait(100);
+    },
+
     'Can start/stop server': function () {
         var test = this,
             instance = new Server();
