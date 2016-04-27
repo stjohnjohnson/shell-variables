@@ -1,6 +1,6 @@
 {
   "name": "shell-variables",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Command-line service to read/write variables between shell processes",
   "main": "index.js",
   "scripts": {
