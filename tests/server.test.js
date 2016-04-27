@@ -176,6 +176,54 @@ Y.TestRunner.add(new Y.TestCase({
         test.wait(100);
     },
 
+    'Will fail if immutable': function () {
+        var test = this,
+            instance = new Server({
+                foo: 'bar',
+                bar: 'bat',
+                inception: {
+                    one: {
+                        two: {
+                            three: 'bwaaaahhhnn'
+                        }
+                    }
+                }
+            }, 30000, true);
+
+        instance.start(function (url) {
+            test.resume(function () {
+                request.post({
+                    url: url + 'foo',
+                    json: {
+                        key: 'foo',
+                        value: 'test'
+                    }
+                }, function (error) {
+                    test.resume(function () {
+                        Assert.isNull(error);
+                        request.post({
+                            url: url + 'foo',
+                            json: {
+                                key: 'foo',
+                                value: 'test'
+                            }
+                        }, function (error, req, body) {
+                            test.resume(function () {
+                                Assert.isNull(error);
+                                Assert.areEqual('Unable to save data: Data is immutable', body);
+                                Assert.areEqual(500, req.statusCode);
+                            });
+                        });
+                        test.wait(100);
+                    });
+                });
+                test.wait(100);
+            });
+        });
+
+        test.wait(100);
+    },
+
     'Will fail if bad nonce': function () {
         var test = this,
             instance = new Server({
@@ -233,7 +281,7 @@ Y.TestRunner.add(new Y.TestCase({
                 }, function (error, req, body) {
                     test.resume(function () {
                         Assert.isNull(error);
-                        Assert.areEqual('Unable to parse JSON', body);
+                        Assert.areEqual('Unable to save data: Unexpected token {', body);
                         Assert.areEqual(500, req.statusCode);
                     });
                 });
