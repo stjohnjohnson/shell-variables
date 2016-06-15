@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var parser = require('nomnom'),
-    util = require('util'),
     cmdLine = require('../lib/cmd_line');
 
 /**
@@ -13,9 +12,10 @@ var parser = require('nomnom'),
  */
 function exitCallback(code, output) {
     if (output) {
-        util.print(output);
+        console.log(output);
+    } else {
+        console.log();
     }
-    console.log();
     process.exit(code);
 }
 
