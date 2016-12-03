@@ -39,6 +39,46 @@ Y.TestRunner.add(new Y.TestCase({
         test.wait(100);
     },
 
+    'Can retrieve an empty value': function () {
+        var test = this,
+            instance = new Client('http://fakeserver');
+
+        nock('http://fakeserver/')
+            .get('/foo')
+            .reply(200, {
+                field: 'foo',
+                value: ''
+            });
+        instance.get('foo', function (error, value) {
+            test.resume(function () {
+                Assert.isNull(error);
+                Assert.areEqual('', value);
+            });
+        });
+        test.wait(100);
+    },
+
+    'Can fail to retrieve a missing value': function () {
+        var test = this,
+            instance = new Client('http://fakeserver');
+
+        nock('http://fakeserver/')
+            .get('/something-else')
+            .reply(200, {
+                field: 'something-else',
+                value: undefined
+            });
+        instance.get('something-else', function (error, value) {
+            test.resume(function () {
+
+                Assert.areEqual('Error: Unable to get value of "something-else" - [object Object]',
+                                error.toString());
+                Assert.isUndefined(value);
+            });
+        });
+        test.wait(100);
+    },
+
     'Can fail to retrieve a value': function () {
         var test = this,
             instance = new Client('http://fakeserver/');
