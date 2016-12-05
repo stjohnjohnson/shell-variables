@@ -62,12 +62,12 @@ Y.TestRunner.add(new Y.TestCase({
 
         nock('http://fakeserver/')
             .get('/foo')
-            .delayConnection(500)
+            .socketDelay(500)
             .reply(403, 'Invalid Nonce');
         Assert.isObject(instance);
         instance.get('foo', function (error, value) {
             test.resume(function () {
-                Assert.areEqual('Error: Unable to get value of "foo" - Error: ETIMEDOUT', error.toString());
+                Assert.areEqual('Error: Unable to get value of "foo" - Error: ESOCKETTIMEDOUT', error.toString());
                 Assert.isUndefined(value);
             });
         });
@@ -112,12 +112,12 @@ Y.TestRunner.add(new Y.TestCase({
 
         nock('http://fakeserver/')
             .post('/foo')
-            .delayConnection(500)
+            .socketDelay(500)
             .reply(500, 'Unknown error');
         Assert.isObject(instance);
         instance.set('foo', 'bar', function (error) {
             test.resume(function () {
-                Assert.areEqual('Error: Unable to set value of "foo" - Error: ETIMEDOUT', error);
+                Assert.areEqual('Error: Unable to set value of "foo" - Error: ESOCKETTIMEDOUT', error);
             });
         });
         test.wait(100);
