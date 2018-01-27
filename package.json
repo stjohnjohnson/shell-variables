@@ -8,7 +8,8 @@
   },
   "bin": {
     "shell_variables.js": "./bin/shell_variables.js",
-    "shell-variables.js": "./bin/shell_variables.js"
+    "shell-variables.js": "./bin/shell_variables.js",
+    "shell-variables-server.js": "./bin/shell_variables_server.js"
   },
   "keywords": [
     "variable",
